@@ -224,8 +224,27 @@ export default function PortfolioHome() {
           </div>
         )}
 
-        {/* 프로젝트 하단 대형 노션 연동 영역 */}
-        <div className="mt-8 flex flex-wrap gap-3 justify-end">
+        {/* 🛠️ [지욱님 추가 요청 사항 반영] 프로젝트 하단 산출물 다운로드 및 링크 연동 제어 대시보드 */}
+        <div className="mt-8 flex flex-wrap gap-3 justify-end items-center">
+          {/* 📁 1. 결과보고서 파일 원클릭 로컬 다운로드 핸들러 */}
+          <a
+            href="/downloads/mock_hacking_report.docx"
+            download="SK쉴더스_모의해킹_실습_결과보고서_정지욱.docx"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-800 text-sm font-extrabold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-750 transition-colors shadow-2xs"
+          >
+            📁 결과보고서 다운로드
+          </a>
+
+          {/* 📊 2. 발표자료 파일 원클릭 로컬 다운로드 핸들러 */}
+          <a
+            href="/downloads/mock_hacking_presentation.pptx"
+            download="SK쉴더스_모의해킹_실습_발표자료_정지욱.pptx"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-800 text-sm font-extrabold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-750 transition-colors shadow-2xs"
+          >
+            📊 발표자료 다운로드
+          </a>
+
+          {/* 🔗 3. 기존의 노션 아티팩트 외부 연동 맵 노드 (오른쪽에 자연스럽게 배치 지속) */}
           {securityProjectData.attachments.map((attach, idx) => (
             <a
               key={idx}
