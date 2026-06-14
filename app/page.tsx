@@ -17,13 +17,40 @@ export default function PortfolioHome() {
       
       {/* 1. HERO / 프로필 섹션 */}
       <header className="max-w-4xl mx-auto pt-24 pb-12 px-6">
-        <div className="flex flex-wrap justify-between items-baseline mb-3">
-          <h1 className="text-4xl font-black tracking-tight">{profileData.name}</h1>
-          <span className="text-sm text-neutral-400 font-mono">Born in 1994 • {profileData.phone}</span>
+        {/* 코드 분석 주석: 사진과 텍스트가 조화롭게 배치되도록 상단 레이아웃을 flex 구조로 변경했습니다. 모바일에서는 세로로, 데스크톱(sm 이상)에서는 가로로 배치되며 사진이 왼쪽에 옵니다. */}
+        <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-6">
+          
+          {/* 프로필 이미지 컨테이너 */}
+          <div className="w-32 h-40 sm:w-36 sm:h-48 relative rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 shrink-0 shadow-xs">
+            {/* 코드 분석 주석: 업로드하신 증명사진 파일명(KakaoTalk_20260613_150435980.jpg)을 public/images/ 경로로 지정하여 매핑했습니다. object-cover 속성으로 비율 왜곡 없이 꽉 차게 렌더링됩니다. */}
+            <img 
+              src="/images/KakaoTalk_20260613_150435980.jpg" 
+              alt={profileData.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* 텍스트 프로필 정보 영역 */}
+          <div className="flex-1 w-full text-center sm:text-left">
+            <div className="flex flex-wrap justify-between items-baseline gap-2 mb-3">
+              <h1 className="text-4xl font-black tracking-tight mx-auto sm:mx-0">{profileData.name}</h1>
+              <span className="text-sm text-neutral-400 font-mono mx-auto sm:mx-0 sm:ml-auto">Born in 1994 • {profileData.phone}</span>
+            </div>
+            <p className="text-xl text-blue-600 dark:text-blue-400 font-bold tracking-tight mb-4">
+              Offensive Security Researcher / Penetration Tester
+            </p>
+            
+            {/* 메인 소셜 채널 및 연락처 링크 (상단 공백 최적화를 위해 위쪽으로 이동 배치) */}
+            <div className="flex flex-wrap justify-center sm:justify-start gap-5 text-sm font-semibold text-neutral-500 dark:text-neutral-400">
+              <a href={`mailto:${profileData.email}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-b border-transparent hover:border-blue-500">
+                {profileData.email}
+              </a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-b border-transparent hover:border-blue-500">
+                GitHub
+              </a>
+            </div>
+          </div>
         </div>
-        <p className="text-xl text-blue-600 dark:text-blue-400 font-bold tracking-tight mb-6">
-          Offensive Security Researcher / Penetration Tester
-        </p>
         
         {/* 상단 자기소개 카드 */}
         <div className="bg-white dark:bg-neutral-800/40 border border-neutral-200 dark:border-neutral-800/80 p-6 rounded-2xl shadow-xs mb-8">
@@ -77,16 +104,6 @@ export default function PortfolioHome() {
               );
             })}
           </div>
-        </div>
-
-        {/* 메인 소셜 채널 및 연락처 링크 */}
-        <div className="flex flex-wrap gap-5 text-sm font-semibold text-neutral-500 dark:text-neutral-400 mb-8">
-          <a href={`mailto:${profileData.email}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-b border-transparent hover:border-blue-500">
-            {profileData.email}
-          </a>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-b border-transparent hover:border-blue-500">
-            GitHub
-          </a>
         </div>
 
         {/* 📝 SK쉴더스 기술 정리노트 대형 배너 섹션 */}
@@ -179,7 +196,7 @@ export default function PortfolioHome() {
             </li>
             <li className="flex gap-4 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               <span className="font-mono text-blue-500 dark:text-blue-400 font-bold bg-neutral-100 dark:bg-neutral-800 w-6 h-6 rounded-full flex items-center justify-center shrink-0">4</span>
-              <span><strong>EMR 데이터 동기화 및 보안 백업 파이프라인:</strong> MariaDB Master-Slave 가용성 복제(Replication)를 구현하고, 무결성 유지를 위한 차등 자동화 쉘 스크립트 백업 검증.</span>
+              <span><strong>EMR 데이터 동기화 및 보안 백업 파이프라인:</strong> MariaDB Master-Slave 가용성 복제(Replication)를 구현하고, 무결성 유지를 위한 차등 자동화 쉘 스크립체 백업 검증.</span>
             </li>
           </ul>
         </div>
@@ -286,7 +303,6 @@ export default function PortfolioHome() {
         )}
 
         {/* 프로젝트 하단 아티팩트 다운로드 대시보드 */}
-        {/* 코드 분석 주석: '결과보고서 다운로드' 및 '발표자료 다운로드' 버튼은 완전히 보존하고, 요구하신 블루 보더 형태의 '노션 아티팩트 전체보기(securityProjectData.attachments 루프 분기)' 버튼만 정확히 타겟팅하여 완전히 제거했습니다. */}
         <div className="mt-8 flex flex-wrap gap-3 justify-end items-center">
           <a
             href="/downloads/mock_hacking_report.docx"
